@@ -4,6 +4,7 @@ import CoreConcepts from './components/CoreConcepts/CoreConcepts.js';
 import TabButton from './components/TabButton.js';
 
 import { useState } from 'react';
+import { EXAMPLES } from './components/Examples/ExamplesData.js';
 
 function App() {
   const [selectedTopic, setSelectedTopic] = useState("Components");
@@ -16,7 +17,11 @@ function App() {
   if (selectedTopic) {
     tabContent = (
       <div id='tab-content'>
-        <h3>{selectedTopic}</h3>
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
       </div>
     )
   }
@@ -34,7 +39,7 @@ function App() {
           </ul>
         </section>
         <section id='examples'>
-          <h1>Examples</h1>
+          <h2>Examples</h2>
           <menu>
             <TabButton 
             isSelected={selectedTopic==="Components"}
@@ -49,16 +54,16 @@ function App() {
               JSX
             </TabButton>
             <TabButton 
-            isSelected={selectedTopic==="props"}
-            onSelect={()=>handleSelect("props")}
+            isSelected={selectedTopic==="Props"}
+            onSelect={()=>handleSelect("Props")}
             >
-              props
+              Props
             </TabButton>
             <TabButton 
-            isSelected={selectedTopic==="state"}
-            onSelect={()=>handleSelect("state")}
+            isSelected={selectedTopic==="State"}
+            onSelect={()=>handleSelect("State")}
             >
-              state
+              State
             </TabButton>
           </menu>
           {tabContent}
