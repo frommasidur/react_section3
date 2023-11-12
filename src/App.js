@@ -25,6 +25,8 @@ function App() {
       </div>
     )
   }
+ 
+  let topics = Object.keys(EXAMPLES);
 
   return (
     <div>
@@ -41,30 +43,15 @@ function App() {
         <section id='examples'>
           <h2>Examples</h2>
           <menu>
-            <TabButton 
-            isSelected={selectedTopic==="Components"}
-            onSelect={()=>handleSelect("Components")}
-            >
-              Components
-            </TabButton>
-            <TabButton 
-            isSelected={selectedTopic==="JSX"}
-            onSelect={()=>handleSelect("JSX")}
-            >
-              JSX
-            </TabButton>
-            <TabButton 
-            isSelected={selectedTopic==="Props"}
-            onSelect={()=>handleSelect("Props")}
-            >
-              Props
-            </TabButton>
-            <TabButton 
-            isSelected={selectedTopic==="State"}
-            onSelect={()=>handleSelect("State")}
-            >
-              State
-            </TabButton>
+            {topics.map((topic, index) => (
+              <TabButton
+                key={index}
+                isSelected={selectedTopic === topic}
+                onSelect={() => handleSelect(topic)}
+              >
+                {topic}
+              </TabButton>
+            ))}
           </menu>
           {tabContent}
         </section>
